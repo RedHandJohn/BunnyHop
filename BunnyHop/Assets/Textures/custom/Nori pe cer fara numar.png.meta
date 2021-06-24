@@ -1,0 +1,596 @@
+fileFormatVersion: 2
+guid: 7464686454bb5494f80223642ab1f838
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4242488543989815685
+    second: Nori pe cer fara numar_0
+  - first:
+      213: 3542943357883753758
+    second: Nori pe cer fara numar_1
+  - first:
+      213: 8543176344352950223
+    second: Nori pe cer fara numar_2
+  - first:
+      213: -7107751076901697175
+    second: Nori pe cer fara numar_3
+  - first:
+      213: -9031207020502446167
+    second: Nori pe cer fara numar_4
+  - first:
+      213: 3407141503367210315
+    second: Nori pe cer fara numar_5
+  - first:
+      213: -2293544213948440761
+    second: Nori pe cer fara numar_6
+  - first:
+      213: -8248871614253649674
+    second: Nori pe cer fara numar_7
+  - first:
+      213: 1121042129228258760
+    second: Nori pe cer fara numar_8
+  - first:
+      213: 5093403876378367796
+    second: Nori pe cer fara numar_9
+  - first:
+      213: -136683691650743542
+    second: Nori pe cer fara numar_10
+  - first:
+      213: 6198006657728863040
+    second: Nori pe cer fara numar_11
+  - first:
+      213: -594470575852726713
+    second: Nori pe cer fara numar_12
+  - first:
+      213: 122738908301581945
+    second: Nori pe cer fara numar_13
+  - first:
+      213: -4881334524875019450
+    second: Nori pe cer fara numar_14
+  - first:
+      213: 2878484245004516666
+    second: Nori pe cer fara numar_15
+  - first:
+      213: -1566342469135003792
+    second: Nori pe cer fara numar_16
+  - first:
+      213: -4797878758103510972
+    second: Nori pe cer fara numar_17
+  - first:
+      213: 1914993190165638179
+    second: Nori pe cer fara numar_18
+  - first:
+      213: -2301575804403034507
+    second: Nori pe cer fara numar_19
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 200
+  spriteBorder: {x: 0, y: 399, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Nori pe cer fara numar_0
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 1820
+        width: 262
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5895d246ad850ea30800000000000000
+      internalID: 4242488543989815685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nori pe cer fara numar_1
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 1826
+        width: 166
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e15adf176301b2130800000000000000
+      internalID: 3542943357883753758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nori pe cer fara numar_2
+      rect:
+        serializedVersion: 2
+        x: 1616
+        y: 1758
+        width: 217
+        height: 185
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc78daa1f957f8670800000000000000
+      internalID: 8543176344352950223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nori pe cer fara numar_3
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 1648
+        width: 260
+        height: 166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 969cf55dd023c5d90800000000000000
+      internalID: -7107751076901697175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nori pe cer fara numar_4
+      rect:
+        serializedVersion: 2
+        x: 1634
+        y: 1516
+        width: 182
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9af00f17015baa280800000000000000
+      internalID: -9031207020502446167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nori pe cer fara numar_5
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 1274
+        width: 190
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4561bf3529984f20800000000000000
+      internalID: 3407141503367210315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nori pe cer fara numar_6
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 1313
+        width: 206
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74f53fa60b1bb20e0800000000000000
+      internalID: -2293544213948440761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nori pe cer fara numar_7
+      rect:
+        serializedVersion: 2
+        x: 1128
+        y: 1223
+        width: 273
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f0bb92a8fe168d80800000000000000
+      internalID: -8248871614253649674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nori pe cer fara numar_8
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 990
+        width: 158
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cdd5e280edbe8f00800000000000000
+      internalID: 1121042129228258760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nori pe cer fara numar_9
+      rect:
+        serializedVersion: 2
+        x: 1695
+        y: 1100
+        width: 267
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 437512de6d76fa640800000000000000
+      internalID: 5093403876378367796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nori pe cer fara numar_10
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 928
+        width: 186
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a03819818e66a1ef0800000000000000
+      internalID: -136683691650743542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nori pe cer fara numar_11
+      rect:
+        serializedVersion: 2
+        x: 1712
+        y: 809
+        width: 219
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04b5f6d773eb30650800000000000000
+      internalID: 6198006657728863040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nori pe cer fara numar_12
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 614
+        width: 240
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74650e0392400c7f0800000000000000
+      internalID: -594470575852726713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nori pe cer fara numar_13
+      rect:
+        serializedVersion: 2
+        x: 1153
+        y: 731
+        width: 279
+        height: 157
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97e5f65036e04b100800000000000000
+      internalID: 122738908301581945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nori pe cer fara numar_14
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 496
+        width: 244
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64b69feac14024cb0800000000000000
+      internalID: -4881334524875019450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nori pe cer fara numar_15
+      rect:
+        serializedVersion: 2
+        x: 1538
+        y: 423
+        width: 292
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3d7d038b2e62f720800000000000000
+      internalID: 2878484245004516666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nori pe cer fara numar_16
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 254
+        width: 205
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07f899ab2db334ae0800000000000000
+      internalID: -1566342469135003792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nori pe cer fara numar_17
+      rect:
+        serializedVersion: 2
+        x: 1112
+        y: 158
+        width: 259
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44019d390b28a6db0800000000000000
+      internalID: -4797878758103510972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nori pe cer fara numar_18
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 91
+        width: 240
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32c6d1f092c639a10800000000000000
+      internalID: 1914993190165638179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nori pe cer fara numar_19
+      rect:
+        serializedVersion: 2
+        x: 1668
+        y: 76
+        width: 280
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5765cea00092f00e0800000000000000
+      internalID: -2301575804403034507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
