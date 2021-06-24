@@ -7,17 +7,16 @@ namespace BunnyHop.States
 {
     public class GameState : BaseState
     {
-        private float _horizontalInput;
-        private bool _playerIsFalling;
-
         public override void InitState()
         {
             base.InitState();
 
             GameRefHolder.Instance.Player.gameObject.SetActive(true);
+
             GameRefHolder.Instance.Player.OnPlayerCollisionEnter += OnPlayerCollisionEnter;
             GameRefHolder.Instance.PlatformsCleaner.OnPlatformCollision += OnCleanerPlatformCollision;
             GameRefHolder.Instance.PlatformsCleaner.OnPlayerCollision += OnCleanerPlayerCollision;
+            GameRefHolder.Instance.InputManager.OnHorizontalInput += OnInputHorizontal;
 
             ResetGameObjects();
         }
@@ -31,12 +30,7 @@ namespace BunnyHop.States
         {
             base.FixedUpdateState();
 
-            _horizontalInput = Input.GetAxis("Horizontal");
-            if(_horizontalInput != 0)
-            {
-                GameRefHolder.Instance.Player.UpdateHorizontalMovement(_horizontalInput);
-            }
-
+            GameRefHolder.Instance.InputManager.CheckInputHorizontal();
             GameRefHolder.Instance.Player.CheckIsFalling();
         }
 
@@ -45,6 +39,7 @@ namespace BunnyHop.States
             GameRefHolder.Instance.Player.OnPlayerCollisionEnter -= OnPlayerCollisionEnter;
             GameRefHolder.Instance.PlatformsCleaner.OnPlatformCollision -= OnCleanerPlatformCollision;
             GameRefHolder.Instance.PlatformsCleaner.OnPlayerCollision -= OnCleanerPlayerCollision;
+            GameRefHolder.Instance.InputManager.OnHorizontalInput -= OnInputHorizontal;
 
             base.ExitState();
         }
@@ -81,6 +76,11 @@ namespace BunnyHop.States
                 GameRefHolder.Instance.Player.Bounce();
                 collision.collider.GetComponent<DestroyablePlatform>()?.OnPlayerCollision();
             }
+        }
+
+        private void OnInputHorizontal(float horizontalInput)
+        {
+            GameRefHolder.Instance.Player.UpdateHorizontalMovement(horizontalInput);
         }
     }
 }

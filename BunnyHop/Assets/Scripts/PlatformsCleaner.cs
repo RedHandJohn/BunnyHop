@@ -18,7 +18,6 @@ namespace BunnyHop
             }
             else if (collision.CompareTag("Player"))
             {
-                Debug.Log("BottomCollider - PlayerCollision");
                 OnPlayerCollision?.Invoke(collision);
             }
         }
