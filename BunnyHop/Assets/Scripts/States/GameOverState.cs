@@ -32,6 +32,7 @@ namespace BunnyHop.States
             UpdateScoreTexts();
             UIRefHolder.Instance.GameOverView.StartTextsAnimation();
             UIRefHolder.Instance.GameOverView.ContinueButton.interactable = false;
+            GameRefHolder.Instance.AudioManager.PlayGameOverSound();
         }
 
         public override void ExitState()

@@ -11,5 +11,7 @@ namespace BunnyHop
         public TitleView TitleView;
         public GameView GameView;
         public GameOverView GameOverView;
+        public GameObject BackgroundDefault;
+        public GameObject BackgroundJetPack;
     }
 }

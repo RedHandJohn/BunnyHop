@@ -12,8 +12,6 @@ namespace BunnyHop
         public float JetPackSpeed;
         public float JetPackDuration;
 
-        public Animator JetPackAnimator;
-
         public UnityAction<Collision2D> OnPlayerCollisionEnter;
 
         private Rigidbody2D _rigidbody;

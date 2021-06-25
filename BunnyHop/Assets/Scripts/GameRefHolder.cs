@@ -12,5 +12,6 @@ namespace BunnyHop
         public PlatformsCleaner PlatformsCleaner;
         public ObjectTracker TrackingCamera;
         public InputManager InputManager;
+        public AudioManager AudioManager;
     }
 }

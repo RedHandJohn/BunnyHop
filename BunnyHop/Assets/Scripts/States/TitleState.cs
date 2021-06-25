@@ -15,6 +15,8 @@ namespace BunnyHop.States
             UIRefHolder.Instance.TitleView.ShowView();
 
             UIRefHolder.Instance.TitleView.OnTitleViewClicked += OnTitleViewClicked;
+
+            GameRefHolder.Instance.AudioManager.PlayBGMusic();
         }
 
         public override void ExitState()

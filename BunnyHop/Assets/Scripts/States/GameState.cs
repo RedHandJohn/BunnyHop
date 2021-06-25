@@ -29,10 +29,12 @@ namespace BunnyHop.States
             GameRefHolder.Instance.Player.Reset(GameRefHolder.Instance.LevelManager.PlayerStartPos);
             GameRefHolder.Instance.TrackingCamera.ResetPosition();
             GameRefHolder.Instance.LevelManager.SpawnStartingPlatforms();
+            GameRefHolder.Instance.AudioManager.PlayBGMusic();
 
             UIRefHolder.Instance.GameView.ShowView();
             UIRefHolder.Instance.GameView.StartIntroAnimation();
             UIRefHolder.Instance.GameView.TopBar.SetActive(false);
+
             GameRefHolder.Instance.Player.gameObject.SetActive(false);
             _inputEnabled = false;
             _jumpedPlatformsCount = 0;
@@ -99,12 +101,16 @@ namespace BunnyHop.States
                 _jumpedPlatformsCount++;
                 UIRefHolder.Instance.GameView.PlatformsCountText.text = _jumpedPlatformsCount.ToString();
                 UpdateScore();
+                GameRefHolder.Instance.AudioManager.PlayBounceSFX();
             }
             else if(collision.collider.CompareTag("JetPack"))
             {
                 collision.gameObject.SetActive(false);
 
                 GameRefHolder.Instance.Player.StartJetPack();
+                GameRefHolder.Instance.AudioManager.PlayJetPack();
+                UIRefHolder.Instance.BackgroundDefault.SetActive(false);
+                UIRefHolder.Instance.BackgroundJetPack.SetActive(true);
                 _jetPackTimeLeft = GameRefHolder.Instance.Player.JetPackDuration;
             }
         }
@@ -125,8 +131,12 @@ namespace BunnyHop.States
 
         private void UpdateScore()
         {
-            _currentScore = Mathf.RoundToInt(GameRefHolder.Instance.Player.transform.position.y * 10);
-            UIRefHolder.Instance.GameView.ScoreCountText.text = _currentScore.ToString();
+            int newScore = Mathf.RoundToInt(GameRefHolder.Instance.Player.transform.position.y * 10);
+            if(_currentScore < newScore)
+            {
+                _currentScore = newScore;
+                UIRefHolder.Instance.GameView.ScoreCountText.text = _currentScore.ToString();
+            }
         }
 
         private void UpdateJetPackTime()
@@ -140,6 +150,9 @@ namespace BunnyHop.States
                 else
                 {
                     GameRefHolder.Instance.Player.StopJetPack();
+                    GameRefHolder.Instance.AudioManager.PlayBGMusic();
+                    UIRefHolder.Instance.BackgroundDefault.SetActive(true);
+                    UIRefHolder.Instance.BackgroundJetPack.SetActive(false);
                 }
             }
         }

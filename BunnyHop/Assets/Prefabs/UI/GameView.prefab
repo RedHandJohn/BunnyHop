@@ -645,6 +645,7 @@ MonoBehaviour:
   TopBar: {fileID: 804647460890646845}
   PlatformsCountText: {fileID: 6445239958125380641}
   ScoreCountText: {fileID: 3360121875750669205}
+  JetPackAnimator: {fileID: 0}
 --- !u!1 &6693051337622211506
 GameObject:
   m_ObjectHideFlags: 0
