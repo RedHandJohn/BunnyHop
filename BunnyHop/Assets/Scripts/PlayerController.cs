@@ -9,13 +9,22 @@ namespace BunnyHop
     {
         public float JumpSpeed;
         public float HorizontalSpeed;
+        public float JetPackSpeed;
+        public float JetPackDuration;
+
+        public Animator JetPackAnimator;
+
         public UnityAction<Collision2D> OnPlayerCollisionEnter;
 
         private Rigidbody2D _rigidbody;
         private Animator _animator;
 
+        [SerializeField]
         private bool _isFalling;
         public bool IsFalling { get { return _isFalling; } }
+
+        private bool _isJetpacking;
+        public bool IsJetpacking { get { return _isJetpacking; } }
 
         private void Awake()
         {
@@ -54,6 +63,24 @@ namespace BunnyHop
                 _isFalling = true;
                 _animator.SetTrigger("Fall");
             }
+        }
+
+        public void StartJetPack()
+        {
+            _animator.SetBool("IsJetPacking", true);
+            _isFalling = false;
+            _isJetpacking = true;
+        }
+
+        public void MaintainJetPack()
+        {
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, JetPackSpeed);
+        }
+
+        public void StopJetPack()
+        {
+            _isJetpacking = false;
+            _animator.SetBool("IsJetPacking", false);
         }
     }
 }

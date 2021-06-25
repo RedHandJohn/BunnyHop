@@ -32,6 +32,14 @@ namespace BunnyHop
                 {
                     var newObject = GameObject.Instantiate(Prefab, ParentTransform);
                     _pool.Add(newObject);
+                    newObject.SetActive(false);
+                }
+            }
+            else
+            {
+                foreach (Transform child in ParentTransform)
+                {
+                    child.gameObject.SetActive(false);
                 }
             }
         }

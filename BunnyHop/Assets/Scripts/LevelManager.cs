@@ -21,6 +21,10 @@ namespace BunnyHop
         [Header("Moving Platforms - Vertical")]
         public ObjectPool MovingVerticalPool;
 
+        [Header("Items")]
+        public ObjectPool JetPacksPool;
+        public Vector3 JetPackSpawnOffset;
+
         [Header("Position Parameters")]
         public Vector3 FirstPlatformPosition;
         public float XMax;
@@ -34,8 +38,6 @@ namespace BunnyHop
         private Vector3 _newPlatformPos;
         private float _totalWeight;
         private float _random;
-        private float _movingXMax;
-        private float _movingYMax;
 
         public void SpawnStartingPlatforms()
         {
@@ -86,6 +88,7 @@ namespace BunnyHop
                     else
                     {
                         newPlatform = StandardPlatformPool.GetPooledObject();
+                        SpawnJetPack(_newPlatformPos + JetPackSpawnOffset);
                     }
                 }
             }
@@ -101,32 +104,23 @@ namespace BunnyHop
             DestroyablePlatformPool.InitPool();
             MovingHorizontalPool.InitPool();
             MovingVerticalPool.InitPool();
-
-            foreach (Transform child in StandardPlatformPool.ParentTransform)
-            {
-                child.gameObject.SetActive(false);
-            }
-
-            foreach (Transform child in DestroyablePlatformPool.ParentTransform)
-            {
-                child.gameObject.SetActive(false);
-            }
-
-            foreach (Transform child in MovingHorizontalPool.ParentTransform)
-            {
-                child.gameObject.SetActive(false);
-            }
-
-            foreach (Transform child in MovingVerticalPool.ParentTransform)
-            {
-                child.gameObject.SetActive(false);
-            }
+            JetPacksPool.InitPool();
         }
 
         private void SpawnFirstPlatform()
         {
             var firstPlatform = StandardPlatformPool.GetPooledObject();
             firstPlatform.transform.position = FirstPlatformPosition;
+        }
+
+        private void SpawnJetPack(Vector3 position)
+        {
+            if(Random.Range(0f, 1f) < JetPacksPool.Weight)
+            {
+                var jetPack = JetPacksPool.GetPooledObject();
+                jetPack.transform.position = position;
+                jetPack.gameObject.SetActive(true);
+            }
         }
     }
 }

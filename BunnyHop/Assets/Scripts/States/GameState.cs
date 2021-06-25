@@ -12,6 +12,8 @@ namespace BunnyHop.States
         private int _jumpedPlatformsCount;
         private int _currentScore;
 
+        private float _jetPackTimeLeft;
+
         public override void InitState()
         {
             base.InitState();
@@ -31,14 +33,17 @@ namespace BunnyHop.States
             UIRefHolder.Instance.GameView.ShowView();
             UIRefHolder.Instance.GameView.StartIntroAnimation();
             UIRefHolder.Instance.GameView.TopBar.SetActive(false);
-            ResetScore();
             GameRefHolder.Instance.Player.gameObject.SetActive(false);
             _inputEnabled = false;
+            _jumpedPlatformsCount = 0;
+            _currentScore = 0;
         }
 
         public override void UpdateState()
         {
             base.UpdateState();
+            UpdateScore();
+            UpdateJetPackTime();
         }
 
         public override void FixedUpdateState()
@@ -49,6 +54,7 @@ namespace BunnyHop.States
             {
                 GameRefHolder.Instance.InputManager.CheckInputHorizontal();
                 GameRefHolder.Instance.Player.CheckIsFalling();
+                JetPackPlayer();
             }
         }
 
@@ -90,7 +96,16 @@ namespace BunnyHop.States
             {
                 GameRefHolder.Instance.Player.Bounce();
                 collision.collider.GetComponent<BasePlatform>()?.OnPlayerCollision();
+                _jumpedPlatformsCount++;
+                UIRefHolder.Instance.GameView.PlatformsCountText.text = _jumpedPlatformsCount.ToString();
                 UpdateScore();
+            }
+            else if(collision.collider.CompareTag("JetPack"))
+            {
+                collision.gameObject.SetActive(false);
+
+                GameRefHolder.Instance.Player.StartJetPack();
+                _jetPackTimeLeft = GameRefHolder.Instance.Player.JetPackDuration;
             }
         }
 
@@ -104,27 +119,37 @@ namespace BunnyHop.States
             _inputEnabled = true;
             GameRefHolder.Instance.Player.gameObject.SetActive(true);
             UIRefHolder.Instance.GameView.TopBar.SetActive(true);
-            UpdateScoreTexts();
+            UIRefHolder.Instance.GameView.PlatformsCountText.text = _jumpedPlatformsCount.ToString();
+            UIRefHolder.Instance.GameView.ScoreCountText.text = _currentScore.ToString();
         }
 
         private void UpdateScore()
         {
-            _jumpedPlatformsCount++;
             _currentScore = Mathf.RoundToInt(GameRefHolder.Instance.Player.transform.position.y * 10);
-
-            UpdateScoreTexts();
-        }
-
-        private void ResetScore()
-        {
-            _jumpedPlatformsCount = 0;
-            _currentScore = 0;
-        }
-
-        private void UpdateScoreTexts()
-        {
-            UIRefHolder.Instance.GameView.PlatformsCountText.text = _jumpedPlatformsCount.ToString();
             UIRefHolder.Instance.GameView.ScoreCountText.text = _currentScore.ToString();
+        }
+
+        private void UpdateJetPackTime()
+        {
+            if(GameRefHolder.Instance.Player.IsJetpacking)
+            {
+                if (_jetPackTimeLeft > 0)
+                {
+                    _jetPackTimeLeft -= Time.deltaTime;
+                }
+                else
+                {
+                    GameRefHolder.Instance.Player.StopJetPack();
+                }
+            }
+        }
+
+        private void JetPackPlayer()
+        {
+            if (GameRefHolder.Instance.Player.IsJetpacking)
+            {
+                GameRefHolder.Instance.Player.MaintainJetPack();
+            }
         }
     }
 }
