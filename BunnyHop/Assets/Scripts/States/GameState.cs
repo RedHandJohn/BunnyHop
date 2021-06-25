@@ -1,4 +1,5 @@
-﻿using BunnyHop.Util;
+﻿using BunnyHop.Platforms;
+using BunnyHop.Util;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -53,7 +54,7 @@ namespace BunnyHop.States
 
         private void OnCleanerPlatformCollision(Collider2D platformCollider)
         {
-            GameObject.Destroy(platformCollider.gameObject);
+            platformCollider.gameObject.SetActive(false);
             GameRefHolder.Instance.LevelManager.GetNewPlatform();
         }
 
@@ -74,7 +75,7 @@ namespace BunnyHop.States
             if (GameRefHolder.Instance.Player.IsFalling && collision.collider.CompareTag("Platform"))
             {
                 GameRefHolder.Instance.Player.Bounce();
-                collision.collider.GetComponent<DestroyablePlatform>()?.OnPlayerCollision();
+                collision.collider.GetComponent<BasePlatform>()?.OnPlayerCollision();
             }
         }
 

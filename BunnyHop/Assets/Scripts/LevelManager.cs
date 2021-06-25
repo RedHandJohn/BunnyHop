@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using BunnyHop.Platforms;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,14 +7,18 @@ namespace BunnyHop
 {
     public class LevelManager : MonoBehaviour
     {
-        public Transform PlatformsParent;
-        public GameObject StandardPlatformPrefab;
-        public GameObject DestroyablePlatformPrefab;
+        public int InitialPlatformCount;
+
+        [Header("Standard Platforms")]
+        public ObjectPool StandardPlatformPool;
+
+        [Header("Destroyable Platforms")]
         [Range(0f, 1f)]
         public float DestroyableProbability;
+        public ObjectPool DestroyablePlatformPool;
 
+        [Header("Position Parameters")]
         public Vector3 FirstPlatformPosition;
-        public int StartingPlatforms;
         public float XMax;
         public float YMin;
         public float YMax;
@@ -26,13 +31,15 @@ namespace BunnyHop
 
         public void SpawnStartingPlatforms()
         {
-            DestroyAllPlatforms();
+            StandardPlatformPool.InitPool();
+            DestroyablePlatformPool.InitPool();
+            ResetAllPlatforms();
 
             _lastYPos = 0f;
 
-            GameObject.Instantiate(StandardPlatformPrefab, FirstPlatformPosition, Quaternion.identity, PlatformsParent);
+            SpawnFirstPlatform();
 
-            for (int i = 0; i < StartingPlatforms - 1; i++)
+            for (int i = 0; i < InitialPlatformCount; i++)
             {
                 GetNewPlatform();
             }
@@ -44,23 +51,39 @@ namespace BunnyHop
             _lastYPos = Random.Range(_lastYPos + YMin, _lastYPos + YMax);
             _newPlatformPos = new Vector3(_lastXPos, _lastYPos, 0f);
 
+            GameObject newPlatform;
             if (Random.Range(0f, 1f) < DestroyableProbability)
             {
-                return GameObject.Instantiate(DestroyablePlatformPrefab, _newPlatformPos, Quaternion.identity, PlatformsParent);
+                newPlatform = DestroyablePlatformPool.GetPooledObject();
+
             }
             else
             {
+                newPlatform = StandardPlatformPool.GetPooledObject();
+            }
 
-                return GameObject.Instantiate(StandardPlatformPrefab, _newPlatformPos, Quaternion.identity, PlatformsParent);
+            newPlatform.GetComponent<BasePlatform>().Reset();
+            newPlatform.transform.position = _newPlatformPos;
+            return newPlatform;
+        }
+
+        public void ResetAllPlatforms()
+        {
+            foreach (Transform child in StandardPlatformPool.ParentTransform)
+            {
+                child.gameObject.SetActive(false);
+            }
+
+            foreach (Transform child in DestroyablePlatformPool.ParentTransform)
+            {
+                child.gameObject.SetActive(false);
             }
         }
 
-        public void DestroyAllPlatforms()
+        private void SpawnFirstPlatform()
         {
-            foreach (Transform child in PlatformsParent)
-            {
-                GameObject.Destroy(child.gameObject);
-            }
+            var firstPlatform = StandardPlatformPool.GetPooledObject();
+            firstPlatform.transform.position = FirstPlatformPosition;
         }
     }
 }

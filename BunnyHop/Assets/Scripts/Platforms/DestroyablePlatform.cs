@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BunnyHop
+namespace BunnyHop.Platforms
 {
-    public class DestroyablePlatform : MonoBehaviour
+    public class DestroyablePlatform : BasePlatform
     {
         private Animator _animator;
         private EdgeCollider2D _collider;
@@ -17,9 +17,16 @@ namespace BunnyHop
             _rigidbody = GetComponent<Rigidbody2D>();
         }
 
-        public void OnPlayerCollision()
+        public override void Reset()
         {
-            _collider.enabled = false;
+            base.Reset();
+
+            _animator.SetTrigger("Idle");
+            _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+
+        public override void OnPlayerCollision()
+        {
             _animator.SetTrigger("Destroy");
             _rigidbody.constraints -= RigidbodyConstraints2D.FreezePositionY;
         }
