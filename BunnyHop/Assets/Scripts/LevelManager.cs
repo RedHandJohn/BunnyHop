@@ -13,9 +13,13 @@ namespace BunnyHop
         public ObjectPool StandardPlatformPool;
 
         [Header("Destroyable Platforms")]
-        [Range(0f, 1f)]
-        public float DestroyableProbability;
         public ObjectPool DestroyablePlatformPool;
+
+        [Header("Moving Platforms - Horizontal")]
+        public ObjectPool MovingHorizontalPool;
+
+        [Header("Moving Platforms - Vertical")]
+        public ObjectPool MovingVerticalPool;
 
         [Header("Position Parameters")]
         public Vector3 FirstPlatformPosition;
@@ -28,14 +32,17 @@ namespace BunnyHop
         private float _lastXPos;
         private float _lastYPos;
         private Vector3 _newPlatformPos;
+        private float _totalWeight;
+        private float _random;
+        private float _movingXMax;
+        private float _movingYMax;
 
         public void SpawnStartingPlatforms()
         {
-            StandardPlatformPool.InitPool();
-            DestroyablePlatformPool.InitPool();
-            ResetAllPlatforms();
-
             _lastYPos = 0f;
+            _totalWeight = StandardPlatformPool.Weight + DestroyablePlatformPool.Weight + MovingHorizontalPool.Weight + MovingVerticalPool.Weight;
+
+            ResetAllPlatforms();
 
             SpawnFirstPlatform();
 
@@ -52,14 +59,35 @@ namespace BunnyHop
             _newPlatformPos = new Vector3(_lastXPos, _lastYPos, 0f);
 
             GameObject newPlatform;
-            if (Random.Range(0f, 1f) < DestroyableProbability)
-            {
-                newPlatform = DestroyablePlatformPool.GetPooledObject();
+            _random = Random.Range(0f, _totalWeight);
 
+            if(_random < MovingVerticalPool.Weight)
+            {
+                newPlatform = MovingVerticalPool.GetPooledObject();
+                newPlatform.GetComponent<MovingPlatform>().Init(_lastYPos - (YMax / 2), _lastYPos + (YMax / 2));
+                // give some space to next platforms
+                _lastYPos += YMax/2;
             }
             else
             {
-                newPlatform = StandardPlatformPool.GetPooledObject();
+                _random -= MovingVerticalPool.Weight;
+                if(_random < MovingHorizontalPool.Weight)
+                {
+                    newPlatform = MovingHorizontalPool.GetPooledObject();
+                    newPlatform.GetComponent<MovingPlatform>().Init(_lastXPos - (XMax / 2), _lastXPos + (XMax / 2));
+                }
+                else
+                {
+                    _random -= MovingHorizontalPool.Weight;
+                    if (_random < DestroyablePlatformPool.Weight)
+                    {
+                        newPlatform = DestroyablePlatformPool.GetPooledObject();
+                    }
+                    else
+                    {
+                        newPlatform = StandardPlatformPool.GetPooledObject();
+                    }
+                }
             }
 
             newPlatform.GetComponent<BasePlatform>().Reset();
@@ -69,12 +97,27 @@ namespace BunnyHop
 
         public void ResetAllPlatforms()
         {
+            StandardPlatformPool.InitPool();
+            DestroyablePlatformPool.InitPool();
+            MovingHorizontalPool.InitPool();
+            MovingVerticalPool.InitPool();
+
             foreach (Transform child in StandardPlatformPool.ParentTransform)
             {
                 child.gameObject.SetActive(false);
             }
 
             foreach (Transform child in DestroyablePlatformPool.ParentTransform)
+            {
+                child.gameObject.SetActive(false);
+            }
+
+            foreach (Transform child in MovingHorizontalPool.ParentTransform)
+            {
+                child.gameObject.SetActive(false);
+            }
+
+            foreach (Transform child in MovingVerticalPool.ParentTransform)
             {
                 child.gameObject.SetActive(false);
             }

@@ -346,6 +346,66 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &570907621
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 570907622}
+  m_Layer: 0
+  m_Name: MovingVerticalPlatforms
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &570907622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570907621}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2010306351}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &623215609
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 623215610}
+  m_Layer: 0
+  m_Name: MovingHorizontalPlatforms
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &623215610
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623215609}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2010306351}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &637769696
 GameObject:
   m_ObjectHideFlags: 0
@@ -1098,6 +1158,8 @@ Transform:
   m_Children:
   - {fileID: 637769697}
   - {fileID: 1604280370}
+  - {fileID: 623215610}
+  - {fileID: 570907622}
   m_Father: {fileID: 173384285}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1119,13 +1181,28 @@ MonoBehaviour:
     Prefab: {fileID: 8466457788937540767, guid: 666a6a53f53557c4ea4f51752bd93090,
       type: 3}
     InitialCount: 25
+    Weight: 1
     _pool: []
-  DestroyableProbability: 0.1
   DestroyablePlatformPool:
     ParentTransform: {fileID: 1604280370}
     Prefab: {fileID: 8318877117839564077, guid: 54daaf2e6323339459c739e5dfa01b41,
       type: 3}
     InitialCount: 5
+    Weight: 0.2
+    _pool: []
+  MovingHorizontalPool:
+    ParentTransform: {fileID: 623215610}
+    Prefab: {fileID: 5251374882732055643, guid: 355209d24198d6d49b8d1c46da66ff62,
+      type: 3}
+    InitialCount: 5
+    Weight: 0.2
+    _pool: []
+  MovingVerticalPool:
+    ParentTransform: {fileID: 570907622}
+    Prefab: {fileID: 5203137082216318231, guid: 2bfc90bb3060b8746960b8c6aa480abb,
+      type: 3}
+    InitialCount: 5
+    Weight: 0.2
     _pool: []
   FirstPlatformPosition: {x: 0, y: 0, z: 0}
   XMax: 2.25

@@ -11,6 +11,8 @@ namespace BunnyHop
         public Transform ParentTransform;
         public GameObject Prefab;
         public int InitialCount;
+        [Range(0f, 1f)]
+        public float Weight;
 
         public int CurrentCount { get { return _pool.Count; } }
 
