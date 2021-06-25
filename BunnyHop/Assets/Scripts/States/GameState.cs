@@ -8,18 +8,32 @@ namespace BunnyHop.States
 {
     public class GameState : BaseState
     {
+        private bool _inputEnabled;
+        private int _jumpedPlatformsCount;
+        private int _currentScore;
+
         public override void InitState()
         {
             base.InitState();
-
-            GameRefHolder.Instance.Player.gameObject.SetActive(true);
 
             GameRefHolder.Instance.Player.OnPlayerCollisionEnter += OnPlayerCollisionEnter;
             GameRefHolder.Instance.PlatformsCleaner.OnPlatformCollision += OnCleanerPlatformCollision;
             GameRefHolder.Instance.PlatformsCleaner.OnPlayerCollision += OnCleanerPlayerCollision;
             GameRefHolder.Instance.InputManager.OnHorizontalInput += OnInputHorizontal;
 
-            ResetGameObjects();
+            UIRefHolder.Instance.GameView.OnCountdownAnimationEnd += OnIntroCountdownEnd;
+
+            GameRefHolder.Instance.Player.gameObject.SetActive(true);
+            GameRefHolder.Instance.Player.Reset(GameRefHolder.Instance.LevelManager.PlayerStartPos);
+            GameRefHolder.Instance.TrackingCamera.ResetPosition();
+            GameRefHolder.Instance.LevelManager.SpawnStartingPlatforms();
+
+            UIRefHolder.Instance.GameView.ShowView();
+            UIRefHolder.Instance.GameView.StartIntroAnimation();
+            UIRefHolder.Instance.GameView.TopBar.SetActive(false);
+            ResetScore();
+            GameRefHolder.Instance.Player.gameObject.SetActive(false);
+            _inputEnabled = false;
         }
 
         public override void UpdateState()
@@ -31,8 +45,11 @@ namespace BunnyHop.States
         {
             base.FixedUpdateState();
 
-            GameRefHolder.Instance.InputManager.CheckInputHorizontal();
-            GameRefHolder.Instance.Player.CheckIsFalling();
+            if(_inputEnabled)
+            {
+                GameRefHolder.Instance.InputManager.CheckInputHorizontal();
+                GameRefHolder.Instance.Player.CheckIsFalling();
+            }
         }
 
         public override void ExitState()
@@ -42,14 +59,11 @@ namespace BunnyHop.States
             GameRefHolder.Instance.PlatformsCleaner.OnPlayerCollision -= OnCleanerPlayerCollision;
             GameRefHolder.Instance.InputManager.OnHorizontalInput -= OnInputHorizontal;
 
-            base.ExitState();
-        }
+            UIRefHolder.Instance.GameView.OnCountdownAnimationEnd -= OnIntroCountdownEnd;
 
-        private void ResetGameObjects()
-        {
-            GameRefHolder.Instance.Player.Reset(GameRefHolder.Instance.LevelManager.PlayerStartPos);
-            GameRefHolder.Instance.TrackingCamera.ResetPosition();
-            GameRefHolder.Instance.LevelManager.SpawnStartingPlatforms();
+            UIRefHolder.Instance.GameView.HideView();
+
+            base.ExitState();
         }
 
         private void OnCleanerPlatformCollision(Collider2D platformCollider)
@@ -65,8 +79,8 @@ namespace BunnyHop.States
 
         private void PlayerDeath()
         {
-            GameRefHolder.Instance.Player.Die();
-            StateMachine.ChangeState(new TitleState());
+            GameRefHolder.Instance.Player.gameObject.SetActive(false);
+            StateMachine.ChangeState(new GameOverState(_currentScore));
         }
 
 
@@ -76,12 +90,41 @@ namespace BunnyHop.States
             {
                 GameRefHolder.Instance.Player.Bounce();
                 collision.collider.GetComponent<BasePlatform>()?.OnPlayerCollision();
+                UpdateScore();
             }
         }
 
         private void OnInputHorizontal(float horizontalInput)
         {
             GameRefHolder.Instance.Player.UpdateHorizontalMovement(horizontalInput);
+        }
+
+        private void OnIntroCountdownEnd()
+        {
+            _inputEnabled = true;
+            GameRefHolder.Instance.Player.gameObject.SetActive(true);
+            UIRefHolder.Instance.GameView.TopBar.SetActive(true);
+            UpdateScoreTexts();
+        }
+
+        private void UpdateScore()
+        {
+            _jumpedPlatformsCount++;
+            _currentScore = Mathf.RoundToInt(GameRefHolder.Instance.Player.transform.position.y * 10);
+
+            UpdateScoreTexts();
+        }
+
+        private void ResetScore()
+        {
+            _jumpedPlatformsCount = 0;
+            _currentScore = 0;
+        }
+
+        private void UpdateScoreTexts()
+        {
+            UIRefHolder.Instance.GameView.PlatformsCountText.text = _jumpedPlatformsCount.ToString();
+            UIRefHolder.Instance.GameView.ScoreCountText.text = _currentScore.ToString();
         }
     }
 }

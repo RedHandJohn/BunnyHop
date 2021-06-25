@@ -12,7 +12,6 @@ namespace BunnyHop
         public UnityAction<Collision2D> OnPlayerCollisionEnter;
 
         private Rigidbody2D _rigidbody;
-        private BoxCollider2D _collider;
         private Animator _animator;
 
         private bool _isFalling;
@@ -21,7 +20,6 @@ namespace BunnyHop
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
-            _collider = GetComponent<BoxCollider2D>();
             _animator = GetComponent<Animator>();
         }
 
@@ -42,7 +40,6 @@ namespace BunnyHop
         {
             transform.position = startPos;
             _rigidbody.velocity = Vector3.zero;
-            _collider.enabled = true;
         }
 
         public void UpdateHorizontalMovement(float horizontalMove)
@@ -57,11 +54,6 @@ namespace BunnyHop
                 _isFalling = true;
                 _animator.SetTrigger("Fall");
             }
-        }
-
-        public void Die()
-        {
-            _collider.enabled = false;
         }
     }
 }
